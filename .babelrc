@@ -1,0 +1,20 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    ["babel-plugin-root-import", {
+      "rootPathSuffix": "js",
+      "rootPathPrefix": "@"
+    }],
+    ["import", { libraryName: "antd-mobile-rn" }] // 与 Web 平台的区别是不需要设置 style
+  ],
+  "env": { // For React Native
+    "production": {
+      "plugins": [
+        ["babel-plugin-root-import", {
+          "rootPathSuffix": "js",
+          "rootPathPrefix": "@"
+        }]
+      ]
+    }
+  }
+}
