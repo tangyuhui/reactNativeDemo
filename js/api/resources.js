@@ -5,6 +5,7 @@ export function merge (url) {
 export const MICROINSURANCE = {
   GET_PRODUCT_CATEGORY: merge('product/category'), // 获取产品分类
   GET_PRODUCT_BY_CATEID: merge('product'), // 根据产品分类获取产品列表
+  GET_CAROUSEL_IMG:merge('home/image'), //首页轮播图
   GET_PRODUCT_DETAIL: 'product/{id}', // 产品详情
   GET_PRODUCT_PLAN: 'product/{id}/plan', // 获取产品计划
   GET_PRODUCT_PRICE_FACTOR: 'product/plan/{id}/price/factor', // 根据计划id拿到它的价格因素
@@ -38,7 +39,6 @@ export const MICROINSURANCE = {
   GET_CAN_CLAIM_LIST:'center/user/claim', //得到可以理赔订单列表
   POST_CLAIM :'center/user/claim', //提交理赔
   GET_CLAIM_DETAIL:'center/user/claim/{id}',// 得到理赔详情
-  GET_CAROUSEL_IMG:'home/image', //首页轮播图
   GET_INSCOMPANY_MOBILE:'company/mobile', //得到保险公司电话
   ORC_IDCARD:'orc/idcard',//身份证照片识别
   MY_INS_CUSTOMER:'center/user/customer/insur', //查询我的保险客户

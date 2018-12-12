@@ -85769,7 +85769,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.proItem,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 150
+            lineNumber: 166
           }
         }, _react.default.createElement(_reactNative.Image, {
           style: styles.proItemImg,
@@ -85778,18 +85778,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 151
+            lineNumber: 167
           }
         }), _react.default.createElement(_reactNative.View, {
           style: styles.proItemContent,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 152
+            lineNumber: 168
           }
         }, _react.default.createElement(_reactNative.View, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 153
+            lineNumber: 169
           }
         }, _react.default.createElement(_reactNative.Text, {
           style: styles.proName,
@@ -85797,7 +85797,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           numberOfLines: 1,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 154
+            lineNumber: 170
           }
         }, item.productName), _react.default.createElement(_reactNative.Text, {
           style: styles.proDesc,
@@ -85805,18 +85805,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           numberOfLines: 2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 155
+            lineNumber: 171
           }
         }, item.productFeature)), _react.default.createElement(_reactNative.View, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 157
+            lineNumber: 173
           }
         }, _react.default.createElement(_reactNative.Text, {
           style: styles.proPrice,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 158
+            lineNumber: 174
           }
         }, item.minAmount, "\u5143/\u8D77"))));
       };
@@ -85851,7 +85851,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               case 9:
                 _context.prev = 9;
                 _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
+
+                _util.Toast.showError(_context.t0);
 
               case 12:
               case "end":
@@ -85911,7 +85912,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         dataList: [],
         total: 0,
         hasError: false,
-        tabbarList: []
+        tabbarList: [],
+        swiperList: []
       };
       _this.page = 1;
       _this.size = 10;
@@ -85924,8 +85926,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       value: function componentDidMount() {
         var _this2 = this;
 
-        _util.Toast.showSuccess('哈哈哈');
-
+        this.getSwiper();
         this.getProductCategory().then(function () {
           _this2.onHeaderRefresh();
         });
@@ -86020,16 +86021,16 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
                   categoryId: tabbarList[0].id,
                   tabbarList: tabbarList
                 });
-                _context4.next = 17;
+                _context4.next = 16;
                 break;
 
               case 13:
                 _context4.prev = 13;
                 _context4.t0 = _context4["catch"](1);
-                console.log('错误');
-                console.log(_context4.t0);
 
-              case 17:
+                _util.Toast.showError(_context4.t0);
+
+              case 16:
               case "end":
                 return _context4.stop();
             }
@@ -86037,19 +86038,48 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         }, null, this, [[1, 13]]);
       }
     }, {
-      key: "renderBar",
-      value: function renderBar(curItemId) {
-        if (curItemId === this.state.categoryId) {
-          return _react.default.createElement(_reactNative.View, {
-            style: styles.navHighlight,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 102
+      key: "getSwiper",
+      value: function getSwiper() {
+        var res;
+        return _regenerator.default.async(function getSwiper$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return _regenerator.default.awrap(_microInsurance.default.getCarouselImg().then(_util.filterBackendData));
+
+              case 3:
+                res = _context5.sent;
+
+                if (Array.isArray(res)) {
+                  res = res.filter(function (item) {
+                    return item.enabledFlag === true;
+                  });
+                  res.map(function (item) {
+                    item.img = item.code;
+                    item.url = item.value;
+                  });
+                  this.setState({
+                    swiperList: res
+                  });
+                }
+
+                _context5.next = 10;
+                break;
+
+              case 7:
+                _context5.prev = 7;
+                _context5.t0 = _context5["catch"](0);
+
+                _util.Toast.showError(_context5.t0);
+
+              case 10:
+              case "end":
+                return _context5.stop();
             }
-          });
-        } else {
-          return null;
-        }
+          }
+        }, null, this, [[0, 7]]);
       }
     }, {
       key: "renderNav",
@@ -86066,7 +86096,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               key: index,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 114
+                lineNumber: 123
               }
             }, _react.default.createElement(_reactNative.TouchableWithoutFeedback, {
               onPress: function onPress() {
@@ -86074,13 +86104,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 115
+                lineNumber: 124
               }
             }, _react.default.createElement(_reactNative.View, {
               style: styles.navItemTouch,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 116
+                lineNumber: 125
               }
             }, _react.default.createElement(_reactNative.Image, {
               style: styles.navImage,
@@ -86088,19 +86118,40 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               resizeMode: "stretch",
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 117
+                lineNumber: 126
               }
             }), _react.default.createElement(_reactNative.Text, {
               style: styles.navTxt,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 118
+                lineNumber: 127
               }
             }, item.name))), _this3.renderBar(item.id));
           });
         }
 
-        return navList;
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.navContainer,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 138
+          }
+        }, navList);
+      }
+    }, {
+      key: "renderBar",
+      value: function renderBar(curItemId) {
+        if (curItemId === this.state.categoryId) {
+          return _react.default.createElement(_reactNative.View, {
+            style: styles.navHighlight,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 142
+            }
+          });
+        } else {
+          return null;
+        }
       }
     }, {
       key: "handleClick",
@@ -86131,7 +86182,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 142
+            lineNumber: 158
           }
         });
       }
@@ -86163,7 +86214,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 205
+            lineNumber: 221
           }
         }, _react.default.createElement(_reactNative.Text, {
           style: {
@@ -86172,9 +86223,55 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 205
+            lineNumber: 221
           }
         }, "\u6682\u65E0\u6570\u636E"));
+      }
+    }, {
+      key: "renderSwiper",
+      value: function renderSwiper() {
+        var swiperList = this.state.swiperList;
+
+        if (swiperList && swiperList.length > 0) {
+          var slides = swiperList.map(function (slide) {
+            return _react.default.createElement(_reactNative.View, {
+              style: styles.slide,
+              key: slide.img,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 228
+              }
+            }, _react.default.createElement(_reactNative.Image, {
+              style: styles.slideImage,
+              source: slide.url,
+              resizeMode: "stretch",
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 229
+              }
+            }));
+          });
+          return _react.default.createElement(_reactNative.View, {
+            style: styles.swiperWrap,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 234
+            }
+          }, _react.default.createElement(_reactNativeSwiper.default, {
+            style: styles.wrapper,
+            showsButtons: true,
+            buttonWrapperStyle: {
+              background: 'red',
+              color: 'red'
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 235
+            }
+          }, slides));
+        } else {
+          return null;
+        }
       }
     }, {
       key: "render",
@@ -86183,64 +86280,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 209
+            lineNumber: 246
           }
-        }, _react.default.createElement(_reactNative.View, {
-          style: styles.swiperWrap,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 210
-          }
-        }, _react.default.createElement(_reactNativeSwiper.default, {
-          style: styles.wrapper,
-          showsButtons: true,
-          buttonWrapperStyle: {
-            background: 'red',
-            color: 'red'
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 211
-          }
-        }, _react.default.createElement(_reactNative.View, {
-          style: styles.slide1,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 212
-          }
-        }, _react.default.createElement(_reactNative.Image, {
-          style: styles.slideImage,
-          source: _Images.default.index.bannerImages[0],
-          resizeMode: "stretch",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 213
-          }
-        })), _react.default.createElement(_reactNative.View, {
-          style: styles.slide2,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 215
-          }
-        }, _react.default.createElement(_reactNative.Image, {
-          style: styles.slideImage,
-          source: _Images.default.index.bannerImages[1],
-          resizeMode: "stretch",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 216
-          }
-        })))), _react.default.createElement(_reactNative.View, {
-          style: styles.navContainer,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 220
-          }
-        }, this.renderNav()), _react.default.createElement(_reactNative.View, {
+        }, this.renderSwiper(), this.renderNav(), _react.default.createElement(_reactNative.View, {
           style: styles.proList,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 223
+            lineNumber: 249
           }
         }, _react.default.createElement(_reactNativeRefreshListView.default, {
           listRef: this._flatList,
@@ -86265,7 +86311,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           footerEmptyDataText: "-\u597D\u50CF\u4EC0\u4E48\u4E1C\u897F\u90FD\u6CA1\u6709-",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 224
+            lineNumber: 250
           }
         })));
       }
@@ -86285,17 +86331,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       height: 160
     },
     wrapper: {},
-    slide1: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    slide2: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    slide3: {
+    slide: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
@@ -91388,6 +91424,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         page: page,
         size: size
       });
+    },
+    getCarouselImg: function getCarouselImg() {
+      return _httpUtil.default.getRequest(_resources.MICROINSURANCE.GET_CAROUSEL_IMG);
     }
   };
   exports.default = _default;
@@ -91513,6 +91552,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var MICROINSURANCE = {
     GET_PRODUCT_CATEGORY: merge('product/category'),
     GET_PRODUCT_BY_CATEID: merge('product'),
+    GET_CAROUSEL_IMG: merge('home/image'),
     GET_PRODUCT_DETAIL: 'product/{id}',
     GET_PRODUCT_PLAN: 'product/{id}/plan',
     GET_PRODUCT_PRICE_FACTOR: 'product/plan/{id}/price/factor',
@@ -91546,7 +91586,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     GET_CAN_CLAIM_LIST: 'center/user/claim',
     POST_CLAIM: 'center/user/claim',
     GET_CLAIM_DETAIL: 'center/user/claim/{id}',
-    GET_CAROUSEL_IMG: 'home/image',
     GET_INSCOMPANY_MOBILE: 'company/mobile',
     ORC_IDCARD: 'orc/idcard',
     MY_INS_CUSTOMER: 'center/user/customer/insur',

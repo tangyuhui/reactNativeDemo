@@ -13,5 +13,9 @@ export default {
       page: page,
       size: size
     })
+  },
+   /**首页轮播图 */
+   getCarouselImg(){
+    return HttpUtil.getRequest(MICROINSURANCE.GET_CAROUSEL_IMG) 
   }
 }

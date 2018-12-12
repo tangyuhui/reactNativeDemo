@@ -26,14 +26,15 @@ export default class Index extends Component {
       dataList:[],
       total:0,
       hasError:false,
-      tabbarList:[]
+      tabbarList:[],
+      swiperList:[]
     };
     this.page = 1
     this.size = 10
     this._flatList=React.createRef()
   }
   componentDidMount(){
-    // this.onHeaderRefresh()
+    this.getSwiper()
     this.getProductCategory().then(()=>{
       this.onHeaderRefresh()
     })
@@ -46,8 +47,6 @@ export default class Index extends Component {
        this.page++
     }
     try {
-      console.log('-------------------')
-      console.log(this.state.categoryId)
       let data =  await api.getProductByCateId({page: this.page,size:this.size,categoryId:this.state.categoryId}).then(filterBackendData)
       this.setState({
         total:data.total,
@@ -94,12 +93,23 @@ export default class Index extends Component {
       Toast.showError(error)
     }
   }
-  renderBar(curItemId){
-      if(curItemId ===this.state.categoryId){
-           return <View style={styles.navHighlight}></View>
-      }else{
-            return null
+  async getSwiper(){
+    try {
+     let res = await api.getCarouselImg().then(filterBackendData)
+    if (Array.isArray(res)) {
+        res = res.filter(item => item.enabledFlag === true)
+        res.map((item) => {
+          item.img = item.code
+          item.url = item.value
+        })
+        this.setState({
+          swiperList:res
+        })
       }
+    } catch (error) {
+      Toast.showError(error)
+    }
+   
   }
   _keyExtractor = (item, index) => index.toString();
   renderNav(){
@@ -123,7 +133,14 @@ export default class Index extends Component {
         )
       })
     }
-    return navList
+    return   <View style={styles.navContainer}>{navList}</View>
+  }
+  renderBar(curItemId){
+    if(curItemId ===this.state.categoryId){
+         return <View style={styles.navHighlight}></View>
+    }else{
+          return null
+    }
   }
   handleClick(index){
     let flatlist = this._flatList.current
@@ -201,22 +218,32 @@ export default class Index extends Component {
   renderEmptyArea(){
     return <View style={{paddingBottom:20,paddingTop:20}}><Text style={{color:'#999',textAlign:'center'}}>暂无数据</Text></View>
   }
+  renderSwiper(){
+    const swiperList = this.state.swiperList 
+    if(swiperList && swiperList.length>0){
+     const slides = swiperList.map((slide)=>{
+       return (
+        <View style={styles.slide} key={slide.img}>
+         <Image style={styles.slideImage} source={slide.url} resizeMode="stretch"/>
+        </View>
+       )
+     })
+      return (
+       <View style={styles.swiperWrap}>
+        <Swiper style={styles.wrapper}  showsButtons={true} buttonWrapperStyle={ {background:'red',color:'red'}}>
+          {slides}
+        </Swiper>
+       </View>
+      )
+    }else {
+      return null
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.swiperWrap}>
-          <Swiper style={styles.wrapper}  showsButtons={true} buttonWrapperStyle={ {background:'red',color:'red'}}>
-            <View style={styles.slide1}>
-              <Image style={styles.slideImage} source={Images.index.bannerImages[0]} resizeMode="stretch"/>
-            </View>
-            <View style={styles.slide2}>
-              <Image style={styles.slideImage} source={Images.index.bannerImages[1]} resizeMode="stretch"/>
-            </View>
-          </Swiper>
-        </View>
-        <View style={styles.navContainer}>
+           {this.renderSwiper()}
            {this.renderNav()}
-        </View>
         <View style={styles.proList}>
            <RefreshListView
               //使用 ref 可以获取到相应的组件
@@ -253,17 +280,7 @@ const styles = StyleSheet.create({
   wrapper: {
   
   },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  slide3: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
