@@ -17,6 +17,10 @@ import {
 import Swiper from 'react-native-swiper';
 
 export default class Index extends Component {
+  static navigationOptions = {
+    // headerTitle instead of title
+    header:null
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -274,7 +278,8 @@ export default class Index extends Component {
   }
  
   onClickProduct(item){
-    Actions.proDetail({ id: item.id})
+    console.log( this.props.navigation)
+    this.props.navigation.push('ProDetail') 
   }
 }
 

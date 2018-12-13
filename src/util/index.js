@@ -7,8 +7,8 @@ import {commonStyle} from './commonStyle'
 import {filterBackendData}  from './responseMiddleware'
 import {Icon} from './icon'
 import {Toast} from './toast'
-
-export {deviceInfo, commonStyle,filterBackendData,Icon,Toast} 
+import connectProps from './connectProps'
+export {deviceInfo, commonStyle,filterBackendData,Icon,Toast,connectProps} 
 
 
 

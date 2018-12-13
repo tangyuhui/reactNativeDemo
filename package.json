@@ -16,7 +16,7 @@
     "react-native-router-flux": "^4.0.6",
     "react-native-swiper": "^1.5.14",
     "react-native-vector-icons": "^4.3.0",
-    "react-navigation-stack": "^0.6.0"
+    "react-navigation": "^2.4.1"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
