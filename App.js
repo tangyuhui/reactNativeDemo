@@ -6,7 +6,7 @@
  * @flow
  */
 
- import Tang from './js'
+ import Tang from './src/containers/App'
  import React, { Component } from 'react';
 export default class App extends Component {
   render() {
