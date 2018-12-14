@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {deviceInfo,filterBackendData,Toast} from '@/util' 
+import {deviceInfo,filterBackendData,Toast} from '#/util' 
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
-import api from  '@/api/microInsurance'
-import Images from '@/resources/Images'
+import api from  '#/api/microInsurance'
+import Images from '#/resources/Images'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'; // New code
 import {    
@@ -279,7 +279,7 @@ export default class Index extends Component {
  
   onClickProduct(item){
     console.log( this.props.navigation)
-    this.props.navigation.push('ProDetail') 
+    this.props.navigation.push('ProDetail',{id:item.id}) 
   }
 }
 
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
       borderBottomColor: '#E5E5E5',
       borderBottomWidth: StyleSheet.hairlineWidth,
       backgroundColor:'#fff',
-      paddingBottom:30,
+      marginBottom:10,
       flex:1
   },
   proItem:{

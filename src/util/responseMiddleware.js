@@ -1,4 +1,4 @@
-import responseType from '@/constants/responseType'
+import responseType from '#/constants/responseType'
 export function filterBackendData (response) {
     if (response && response.data) {
       if (response.code === responseType.RESPONSE_SUCCESS) {

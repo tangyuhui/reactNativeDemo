@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {deviceInfo,filterBackendData,Toast} from './util' 
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
-import api from  '@/api/microInsurance'
-import Images from '@/resources/Images'
+import api from  '#/api/microInsurance'
+import Images from '#/resources/Images'
 import _ from 'lodash'
 import {    
   StyleSheet,

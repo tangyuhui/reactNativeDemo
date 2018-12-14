@@ -1,4 +1,4 @@
-import {API_URL} from '@/constants/urlConfig'
+import {API_URL} from '#/constants/urlConfig'
 export function merge (url) {
   return `${API_URL}/api/wx/v1/${url}`
 }

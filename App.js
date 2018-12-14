@@ -6,12 +6,13 @@
  * @flow
  */
 
- import Tang from './src/containers/App'
+import Tang from './src/containers/App'
+//  import  Tang  from './src/test'
  import React, { Component } from 'react';
 export default class App extends Component {
   render() {
     return (
-         <Tang></Tang>
+         <Tang />
     );
   }
 }

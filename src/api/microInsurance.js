@@ -1,4 +1,4 @@
-import HttpUtil from '@/util/httpUtil'
+import HttpUtil from '#/util/httpUtil'
 import {MICROINSURANCE} from './resources'
 
 export default {
